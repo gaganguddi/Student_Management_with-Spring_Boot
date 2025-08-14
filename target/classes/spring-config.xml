@@ -1,0 +1,11 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- DAO and Service beans wired by IoC/DI -->
+    <bean id="studentDAO" class="com.example.sms.dao.StudentDAO"/>
+    <bean id="studentService" class="com.example.sms.service.StudentService">
+        <property name="studentDAO" ref="studentDAO"/>
+    </bean>
+</beans>
