@@ -18,5 +18,7 @@
 
         <!-- Annotated entity -->
         <mapping class="com.example.sms.model.Student"/>
+        <mapping class="com.example.sms.model.Course"/>
+
     </session-factory>
 </hibernate-configuration>

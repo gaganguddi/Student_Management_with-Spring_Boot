@@ -1,5 +1,7 @@
 package com.example.sms;
 
+import com.example.sms.dao.CourseDAO;
+import com.example.sms.model.Course;
 import com.example.sms.model.Student;
 import com.example.sms.service.StudentService;
 import com.example.sms.util.JdbcDemo;
@@ -30,6 +32,8 @@ public class MainApp {
             System.out.println("4. View Students Sorted by Name (Streams)");
             System.out.println("5. Filter Students by Min Age (Streams)");
             System.out.println("6. Delete Student by ID");
+            System.out.println("7. Add courses");
+            System.out.println("8. View the courses");
             System.out.println("0. Exit");
             System.out.print("Choose option: ");
             int opt;
@@ -67,6 +71,21 @@ public class MainApp {
                         int id = Integer.parseInt(sc.nextLine());
                         boolean deleted = service.delete(id);
                         System.out.println(deleted ? "Deleted." : "Not found.");
+                    }
+                    case 7 ->{
+                        CourseDAO courseDAO = new CourseDAO();
+                        System.out.print("Enter Course ID: ");
+                        int cid = Integer.parseInt(sc.nextLine());
+                        System.out.print("Enter Course Name: ");
+                        String cname = sc.nextLine();
+                        System.out.print("Enter Duration (weeks): ");
+                        int dur = Integer.parseInt(sc.nextLine());
+                        courseDAO.save(new Course(cid, cname, dur));
+                        System.out.println("Course added successfully.");
+                    }
+                    case 8 ->{
+                        CourseDAO courseDAO = new CourseDAO();
+                        courseDAO.getAll().forEach(System.out::println);
                     }
                     case 0 -> {
                         System.out.println("Goodbye!");
